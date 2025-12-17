@@ -4,7 +4,7 @@ services:
   db:
     image: postgres
     container_name: postgres
-    restart: always
+    restart: "no"
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin123
@@ -17,7 +17,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4:8
     container_name: pgadmin
-    restart: always
+    restart: "no"
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin123
