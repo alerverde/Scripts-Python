@@ -1,6 +1,6 @@
-# Ejercicio 2 -Extracción incremental desde API externa (BCRA)
+# Script 2 -Extracción incremental desde API externa (BCRA)
 
-En este ejercicio se automatiza la extracción de cotizaciones del dólar tipo vendedor desde la página oficial del Banco Central de la República Argentina (BCRA) mediante web scraping con Selenium, y luego se cargan los datos en una base de datos PostgreSQL alojada en Render.
+En este script se automatiza la extracción de cotizaciones del dólar tipo vendedor desde la página oficial del Banco Central de la República Argentina (BCRA) mediante web scraping con Selenium, y luego se cargan los datos en una base de datos PostgreSQL alojada en Render.
 
 ### Ingesta incremental 
 
@@ -15,9 +15,9 @@ El proceso consta de:
 ### Automatización
 Para automatizar el pipeline el cronjob configurado es:
 
-0 0 * * 5 /usr/bin/python3 /ruta/completa/a/Ejercicio2/main.py >> /ruta/completa/a/Ejercicio2/logs/bnra_update.log 2>&1
+0 0 * * 5 /usr/bin/python3 /ruta/completa/a/Script2/main.py >> /ruta/completa/a/Script2/logs/bnra_update.log 2>&1
 
-Esto ejecutará el script main.py ubicado en la carpeta Ejercicio2 todos los días a la medianoche (00:00 hs). La salida estándar y los errores se guardarán en el archivo etl.log dentro de la misma carpeta Ejercicio2/logs/. Nota: La carpeta logs debe existir previamente para que el archivo de log pueda ser creado correctamente.
+Esto ejecutará el script main.py ubicado en la carpeta Script2 todos los días a la medianoche (00:00 hs). La salida estándar y los errores se guardarán en el archivo etl.log dentro de la misma carpeta Script2/logs/. Nota: La carpeta logs debe existir previamente para que el archivo de log pueda ser creado correctamente.
 
 Importante: En este caso la opción preferida hubiese sido GitHub Actions, pero la configuración de los drivers de Firefox y el acceso a la web durante la ejecución en GitHub no es sencilla. Una alternativa posible sería probar con Chrome.
 El .yml se encuentra en la carpeta .github/workflows
@@ -68,7 +68,7 @@ jobs:
 
       - name: Run scraper with Xvfb (headless Firefox)
         run: |
-          xvfb-run -a python Ejercicio2/main.py
+          xvfb-run -a python Script2/main.py
         env:
           ORIGIN_DB_URL: ${{ secrets.ORIGIN_DB_URL }}
 ```
